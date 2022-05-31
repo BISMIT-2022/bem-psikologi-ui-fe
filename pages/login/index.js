@@ -1,15 +1,32 @@
 import Layout from "../../components/Layout"
-import { Box, Button, Text, Flex, Input, Divider, FormControl, FormErrorMessage } from "@chakra-ui/react"
+import {
+    Box,
+    Button,
+    Text,
+    Flex,
+    Input,
+    Divider,
+    FormControl,
+    FormErrorMessage,
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+    useDisclosure,
+    CloseButton
+} from "@chakra-ui/react"
 import Image from 'next/image'
 import computerPic from '../../public/computerImage.png'
 import { useState } from "react"
 import { arrayOfNpm } from '../../data/data'
 import ErrorIcon from '@atlaskit/icon/glyph/error'
+import { useRouter } from 'next/router'
 
 const LoginPage = () => {
     const [inputNpm, setInputNpm] = useState("")
     const [isLoginSuccess, setIsLoginSuccess] = useState(false)
     const [changeInputState, setChangeInputState] = useState(false)
+    const router = useRouter()
 
     const isNpmExists = arrayOfNpm.includes(inputNpm)
 
@@ -18,10 +35,11 @@ const LoginPage = () => {
         e.preventDefault()
         if (isNpmExists) {
             setIsLoginSuccess(true)
-            return console.log("login berhasil");
+            setTimeout(router.push("/home"), 2000)
+            return true;
         }
         setIsLoginSuccess(false)
-        return console.log("login tidak berhasil")
+        return false
     }
 
     return (
@@ -51,6 +69,24 @@ const LoginPage = () => {
                     >
                         Selamat Datang!
                     </Text>
+                    {isLoginSuccess &&
+                        <Alert className="show-alert" p="8px" gap="10px" h="56px" status='success' position="absolute" bottom="20px" maxW="336px">
+                            <AlertIcon />
+                            <AlertTitle
+                                fontSize="16px"
+                                fontWeight={700}
+                                lineHeight={1.5}
+                            >
+                                Success!
+                            </AlertTitle>
+                            <AlertDescription
+                                fontSize="16px"
+                                fontWeight={500}
+                                lineHeight={1.5}>
+                                Selamat Datang!
+                            </AlertDescription>
+                        </Alert>
+                    }
                     <Text
                         mt="8px"
                         fontSize="20px"
@@ -106,17 +142,16 @@ const LoginPage = () => {
                                         mt="15px"
                                         h="48px"
                                         type="submit"
-                                        onClick={(e) => loginHandler(e)}
+                                        onClick={(e) => { loginHandler(e) }}
                                     >
                                         Log In
                                     </Button>
                                 </Flex>
                             </FormControl>
-
-
                         </form>
                     </Box>
                 </Flex>
+
                 <Divider mt="53px" />
                 <Text
                     fontWeight={400}

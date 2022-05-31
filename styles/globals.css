@@ -22,3 +22,12 @@ a {
   font-family: "HKGrotesk";
 }
 
+
+.show-alert {
+  animation-name: alert-animation;
+  animation-duration: 0.3s;
+}
+@keyframes alert-animation {
+  0%   {bottom: 0}
+  100% {bottom: "20px"}
+}
