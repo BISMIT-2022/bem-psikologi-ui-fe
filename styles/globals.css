@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'HKGrotesk';
+  src:  url('/fonts/HKGrotesk-Regular.woff') format('woff2'),
+        url('/fonts/HKGrotesk-Regular.woff2') format('woff');
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +19,6 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "HKGrotesk";
 }
+
