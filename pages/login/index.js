@@ -1,20 +1,26 @@
 import Layout from "../../components/Layout"
-import { Box, Button, Text, Flex, Input, Divider, FormControl } from "@chakra-ui/react"
+import { Box, Button, Text, Flex, Input, Divider, FormControl, FormErrorMessage } from "@chakra-ui/react"
 import Image from 'next/image'
 import computerPic from '../../public/computerImage.png'
 import { useState } from "react"
 import { arrayOfNpm } from '../../data/data'
+import ErrorIcon from '@atlaskit/icon/glyph/error'
 
 const LoginPage = () => {
     const [inputNpm, setInputNpm] = useState("")
+    const [isLoginSuccess, setIsLoginSuccess] = useState(false)
+    const [changeInputState, setChangeInputState] = useState(false)
 
     const isNpmExists = arrayOfNpm.includes(inputNpm)
 
     const loginHandler = (e) => {
+        setChangeInputState(false)
         e.preventDefault()
         if (isNpmExists) {
+            setIsLoginSuccess(true)
             return console.log("login berhasil");
         }
+        setIsLoginSuccess(false)
         return console.log("login tidak berhasil")
     }
 
@@ -70,32 +76,43 @@ const LoginPage = () => {
                     </Text>
                     <Box w="full">
                         <form>
-                            <Flex
-                                justify="center"
-                                flexDirection="column"
-                                align="center"
-                            >
-                                <Input
-                                    type="number"
-                                    onChange={(e) => setInputNpm(e.target.value)}
-                                    border="2px solid #DFE1E6"
-                                    mt="4px"
-                                    placeholder="Isi NPM di sini"
-                                    h="40px"
-                                />
-                                <Button
-                                    bgColor={"#50AEC7"}
-                                    color={"#FFFFFF"}
-                                    p="0px 24px"
-                                    borderRadius="6px"
-                                    mt="15px"
-                                    h="48px"
-                                    type="submit"
-                                    onClick={(e) => loginHandler(e)}
+                            <FormControl isInvalid={!isLoginSuccess}>
+                                <Flex
+                                    justify="center"
+                                    flexDirection="column"
+                                    align="center"
                                 >
-                                    Log In
-                                </Button>
-                            </Flex>
+                                    <Input
+                                        type="number"
+                                        onChange={(e) => { setInputNpm(e.target.value); setChangeInputState(true) }}
+                                        border="2px solid #DFE1E6"
+                                        mt="4px"
+                                        placeholder="Isi NPM di sini"
+                                        h="40px"
+                                    />
+                                    {!isLoginSuccess && !changeInputState &&
+                                        <FormErrorMessage
+                                            alignSelf="start"
+                                        >
+
+                                            <ErrorIcon />
+                                            NPM yang Anda isi tidak ditemukan
+                                        </FormErrorMessage>}
+                                    <Button
+                                        bgColor={"#50AEC7"}
+                                        color={"#FFFFFF"}
+                                        p="0px 24px"
+                                        borderRadius="6px"
+                                        mt="15px"
+                                        h="48px"
+                                        type="submit"
+                                        onClick={(e) => loginHandler(e)}
+                                    >
+                                        Log In
+                                    </Button>
+                                </Flex>
+                            </FormControl>
+
 
                         </form>
                     </Box>
