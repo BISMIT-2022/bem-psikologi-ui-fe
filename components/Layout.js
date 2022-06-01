@@ -1,8 +1,8 @@
 import { Box, Circle, Flex, Text } from "@chakra-ui/react"
 
-const Layout = ({ hasNavbar, children }) => {
+const Layout = ({ hasNavbar, children, pb }) => {
     return (
-        <Box bgColor="#DADADA" minH="100vh">
+        <Box bgColor="#DADADA" minH="100vh" pb={pb}>
             {hasNavbar &&
                 <Box w="full" position="sticky" h="72px" backgroundColor="#A67399">
                     <Flex alignItems="center" ml="124px" h="full">

@@ -8,7 +8,6 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
@@ -23,9 +22,12 @@ import {
     ModalCloseButton,
 } from "@chakra-ui/react"
 import { profile } from '../../data/data'
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 const Homepage = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const router = useRouter()
     return (
         <Layout hasNavbar>
             <Flex
@@ -39,7 +41,7 @@ const Homepage = () => {
                 pb="20px"
                 mx="80px"
                 h="calc(100vh - 128px)"
-                borderRadius="24px">
+                borderRadius="20px">
                 <Flex justify="space-between" align="center">
                     <Box>
                         <Text
@@ -71,7 +73,7 @@ const Homepage = () => {
                         fontSize="18px"
                         lineHeight={1.5}
                         fontWeight={700}
-                        border="1px solid blue"
+                        border="1px solid #50AEC7"
                         p="0px 24px"
                         borderRadius="6px"
                         onClick={onOpen}
@@ -89,7 +91,7 @@ const Homepage = () => {
                     Penilaian Akhir Jabatan
                 </Text>
 
-                <TableContainer mt="24px">
+                <Box mt="24px">
                     <Table variant='simple'>
                         <Thead>
                             <Tr>
@@ -125,27 +127,30 @@ const Homepage = () => {
                                             lineHeight={1.5}
                                             color="#000000">{el.division}</Td>
                                         <Td isNumeric>
-                                            <Button
-                                                bgColor={el.isAssessed ? "#8D9B9E" : "#50AEC7"}
-                                                color={el.isAssessed ? "#C6CBCC" : "#FFFFFF"}
-                                                p="0px 16px"
-                                                borderRadius="6px"
-                                                fontSize="16px"
-                                                lineHeight={1.5}
-                                                fontWeight={700}
-                                                h="40px"
-                                                isDisabled={el.isAssessed}
-                                                _hover={!el.isAssessed && { backgroundColor: "blue.600" }}
-                                            >
-                                                {el.isAssessed ? "Sudah Dinilai" : "Nilai Sekarang"}
-                                            </Button>
+                                            <Link href={{pathname: `/assesment/[slug]`, query:{slug: el.name, role: el.role, division: el.division}}}>
+                                                <Button
+                                                    bgColor={el.isAssessed ? "#8D9B9E" : "#50AEC7"}
+                                                    color={el.isAssessed ? "#C6CBCC" : "#FFFFFF"}
+                                                    p="0px 16px"
+                                                    borderRadius="6px"
+                                                    fontSize="16px"
+                                                    lineHeight={1.5}
+                                                    fontWeight={700}
+                                                    h="40px"
+                                                    isDisabled={el.isAssessed}
+                                                    _hover={!el.isAssessed && { backgroundColor: "blue.600" }}
+                                                >
+                                                    {el.isAssessed ? "Sudah Dinilai" : "Nilai Sekarang"}
+                                                </Button>
+                                            </Link>
+
                                         </Td>
                                     </Tr>
                                 )
                             })}
                         </Tbody>
                     </Table>
-                </TableContainer>
+                </Box>
 
 
                 <Divider mt="53px" />
@@ -153,7 +158,7 @@ const Homepage = () => {
                     fontWeight={400}
                     fontSize="20px"
                     lineHeight={1.2}
-                    mt="20px"
+                    my="20px"
                     alignSelf="center"
                 >
                     Bidang Pengembangan Organisasi BEM Fakultas Psikologi UI
@@ -178,6 +183,7 @@ const Homepage = () => {
                             lineHeight={1.5}
                             fontWeight={700}
                             _hover={{ backgroundColor: "blue.600" }}
+                            onClick={() => router.push("/login")}
                         >
                             Keluar
                         </Button>
@@ -190,7 +196,7 @@ const Homepage = () => {
                             fontSize="16px"
                             lineHeight={1.5}
                             fontWeight={700}
-                            _hover={{ backgroundColor: "gray.600" }}
+                            _hover={{ backgroundColor: "gray.300" }}
                         >
                             Kembali
                         </Button>

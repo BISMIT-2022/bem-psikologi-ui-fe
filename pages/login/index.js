@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import computerPic from '../../public/computerImage.png'
-import { useState } from "react"
+import { useState, createRef } from "react"
 import { arrayOfNpm } from '../../data/data'
 import ErrorIcon from '@atlaskit/icon/glyph/error'
 import { useRouter } from 'next/router'
@@ -23,8 +23,9 @@ import { useRouter } from 'next/router'
 const LoginPage = () => {
     const [inputNpm, setInputNpm] = useState("")
     const [isLoginSuccess, setIsLoginSuccess] = useState(false)
-    const [changeInputState, setChangeInputState] = useState(false)
+    const [changeInputState, setChangeInputState] = useState(true)
     const router = useRouter()
+    const npmRef = createRef()
 
     const isNpmExists = arrayOfNpm.includes(inputNpm)
 
@@ -32,10 +33,12 @@ const LoginPage = () => {
         setChangeInputState(false)
         e.preventDefault()
         if (isNpmExists) {
-            setIsLoginSuccess(true)
-            setTimeout(router.push("/home"), 2000)
+            setIsLoginSuccess(true), 1000
+            setTimeout(() => router.push("/home"), 2000)
             return true;
         }
+        e.target.blur();
+        npmRef.current.blur();
         setIsLoginSuccess(false)
         return false
     }
@@ -53,7 +56,7 @@ const LoginPage = () => {
                 pb="20px"
                 mx="80px"
                 h="calc(100vh - 128px)"
-                borderRadius="24px">
+                borderRadius="20px">
                 <Flex
                     w="fit-content"
                     justify="center"
@@ -110,13 +113,14 @@ const LoginPage = () => {
                     </Text>
                     <Box w="full">
                         <form>
-                            <FormControl isInvalid={!isLoginSuccess}>
+                            <FormControl isInvalid={!isLoginSuccess && !changeInputState}>
                                 <Flex
                                     justify="center"
                                     flexDirection="column"
                                     align="center"
                                 >
                                     <Input
+                                        ref={npmRef}
                                         type="number"
                                         onChange={(e) => { setInputNpm(e.target.value); setChangeInputState(true) }}
                                         border="2px solid #DFE1E6"
@@ -134,7 +138,7 @@ const LoginPage = () => {
                                         </FormErrorMessage>}
                                     <Button
                                         bgColor={"#50AEC7"}
-                                        _hover={{backgroundColor: "blue.600"}}
+                                        _hover={{ backgroundColor: "blue.600" }}
                                         color={"#FFFFFF"}
                                         p="0px 24px"
                                         borderRadius="6px"

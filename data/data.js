@@ -54,4 +54,22 @@ const profile = {
     ]
 }
 
-export { arrayOfNpm, profile }
+
+const assesmentQuestions = [
+    {
+        id: 1,
+        type: "radio",
+        question: "Apakah xxxx?"
+    },
+    {
+        id: 2,
+        type: "radio",
+        question: "Apakah xxxx?"
+    },
+    {
+        id: 3,
+        type: "textarea",
+        question: "Apakah xxxx?"
+    }
+]
+export { arrayOfNpm, profile, assesmentQuestions }
