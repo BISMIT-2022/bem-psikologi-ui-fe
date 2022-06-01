@@ -10,34 +10,46 @@ const profile = {
     division: "Biro Penelitian dan Pengembangan",
     otherOfficers: [
         {
+            id: 1,
             name: "Winnie The Pooh",
             role: "Ketua",
-            division: "Pengembangan Sumber Daya Manusia"
+            division: "Pengembangan Sumber Daya Manusia",
+            isAssessed: false
         },
         {
+            id: 2,
             name: "Mickey Mouse",
             role: "Wakil Ketua",
-            division: "Pengembangan Sumber Daya Manusia"
+            division: "Pengembangan Sumber Daya Manusia",
+            isAssessed: false
         },
         {
+            id: 3,
             name: "Princess Anna",
             role: "Ketua",
-            division: "Pengembangan Sumber Daya Manusia"
+            division: "Pengembangan Sumber Daya Manusia",
+            isAssessed: true
         },
         {
+            id: 4,
             name: "Rapunzel",
             role: "Ketua",
-            division: "Pengembangan Sumber Daya Manusia"
+            division: "Pengembangan Sumber Daya Manusia",
+            isAssessed: true
         },
         {
+            id: 5,
             name: "Captain Jack Sparrow",
             role: "Ketua",
-            division: "Penelitian dan Pengembangan"
+            division: "Penelitian dan Pengembangan",
+            isAssessed: true
         },
         {
-            name: "M Abdurahman 'BaSnaX' Basyah",
+            id: 6,
+            name: "M Abdurahman Basyah",
             role: "Hamba Allah",
-            division: "Pengembangan Sumber Daya Manusia"
+            division: "Pengembangan Sumber Daya Manusia",
+            isAssessed: true
         }
     ]
 }

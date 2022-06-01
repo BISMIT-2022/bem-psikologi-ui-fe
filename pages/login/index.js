@@ -11,9 +11,7 @@ import {
     Alert,
     AlertIcon,
     AlertTitle,
-    AlertDescription,
-    useDisclosure,
-    CloseButton
+    AlertDescription
 } from "@chakra-ui/react"
 import Image from 'next/image'
 import computerPic from '../../public/computerImage.png'
@@ -136,12 +134,16 @@ const LoginPage = () => {
                                         </FormErrorMessage>}
                                     <Button
                                         bgColor={"#50AEC7"}
+                                        _hover={{backgroundColor: "blue.600"}}
                                         color={"#FFFFFF"}
                                         p="0px 24px"
                                         borderRadius="6px"
                                         mt="15px"
                                         h="48px"
                                         type="submit"
+                                        fontSize="16px"
+                                        lineHeight={1.5}
+                                        fontWeight="700"
                                         onClick={(e) => { loginHandler(e) }}
                                     >
                                         Log In
