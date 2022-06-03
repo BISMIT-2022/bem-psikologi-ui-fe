@@ -51,19 +51,19 @@ const LoginPage = () => {
                 justify="center"
                 bgColor="#FFFFFF"
                 color="#000000"
-                my="28px"
+                my={{ base: "", lg: "28px" }}
                 pt="36px"
                 pb="20px"
-                mx="80px"
-                h="calc(100vh - 128px)"
-                borderRadius="20px">
+                mx={{ base: "", lg: "80px" }}
+                h={{base:"calc(100vh - 72px)", lg:"calc(100vh - 128px)"}}
+                borderRadius={{ base: "", lg: "20px" }}>
                 <Flex
                     w="fit-content"
                     justify="center"
                     flexDirection="column"
                     align="center">
                     <Text
-                        fontSize="48px"
+                        fontSize={{ base: "24px", lg: "48px" }}
                         lineHeight={1.4}
                         fontWeight={700}
                         fontFamily="HKGrotesk"
@@ -71,7 +71,10 @@ const LoginPage = () => {
                         Selamat Datang!
                     </Text>
                     {isLoginSuccess &&
-                        <Alert className="show-alert" p="8px" gap="10px" h="56px" status='success' position="absolute" bottom="20px" maxW="336px">
+                        <Alert className="show-alert" 
+                        p="8px" gap="10px" h="56px" 
+                        status='success' position="absolute" 
+                        bottom="20px" maxW="336px">
                             <AlertIcon />
                             <AlertTitle
                                 fontSize="16px"
@@ -90,11 +93,12 @@ const LoginPage = () => {
                     }
                     <Text
                         mt="8px"
-                        fontSize="20px"
-                        lineHeight={1.2}
+                        fontSize={{ base: "16px", lg: "20px" }}
+                        lineHeight={{ base: 1.5, lg: 1.2 }}
                         fontWeight={400}
                         fontFamily="HKGrotesk"
                         mb="40px"
+                        textAlign="center"
                     >
                         Silakan melakukan login dengan NPM anda
                     </Text>
@@ -108,6 +112,7 @@ const LoginPage = () => {
                         fontSize="16px"
                         lineHeight={1.5}
                         fontWeight={700}
+                        mx={{base: "16px", lg:""}}
                     >
                         Nomor Pokok Mahasiswa (NPM)
                     </Text>
@@ -122,6 +127,7 @@ const LoginPage = () => {
                                     <Input
                                         ref={npmRef}
                                         type="number"
+                                        mx={{base: "16px", lg:""}}
                                         onChange={(e) => { setInputNpm(e.target.value); setChangeInputState(true) }}
                                         border="2px solid #DFE1E6"
                                         mt="4px"
@@ -141,7 +147,7 @@ const LoginPage = () => {
                                         color={"#FFFFFF"}
                                         p="0px 24px"
                                         borderRadius="6px"
-                                        mt="15px"
+                                        mt={{base:"30px", lg:"15px"}}
                                         h="48px"
                                         type="submit"
                                         fontSize="16px"
@@ -157,12 +163,17 @@ const LoginPage = () => {
                     </Box>
                 </Flex>
 
-                <Divider mt="53px" />
+                <Divider mt={{base:"", lg:"53px"}} position={{base: "absolute", lg:""}} 
+                    bottom={{base: "104px", lg:""}} />
                 <Text
                     fontWeight={400}
-                    fontSize="20px"
-                    lineHeight={1.2}
-                    mt="20px"
+                    fontSize={{base: "14px", lg:"20px"}}
+                    lineHeight={{base: 1.7, lg:1.2}}
+                    mt={{base: "", lg:"20px"}}
+                    mx={{base: "16px", lg:""}}
+                    textAlign="center"
+                    position={{base: "absolute", lg:""}}
+                    bottom={{base: "33px", lg:""}}
                 >
                     Bidang Pengembangan Organisasi BEM Fakultas Psikologi UI
                 </Text>
