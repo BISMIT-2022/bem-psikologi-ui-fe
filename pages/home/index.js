@@ -20,6 +20,7 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
+    useMediaQuery,
 } from "@chakra-ui/react"
 import { profile } from '../../data/data'
 import { useRouter } from "next/router"
@@ -27,27 +28,28 @@ import Link from "next/link"
 
 const Homepage = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isMobile] = useMediaQuery('(max-width: 768px)')
+    const [isDesktop] = useMediaQuery('(min-width: 1024px)')
     const router = useRouter()
     return (
-        <Layout hasNavbar>
+        <Layout hasNavbar pb={{ base: "", md:"40px", lg: "28px" }}>
             <Flex
                 flexDirection="column"
                 justify="center"
                 bgColor="#FFFFFF"
                 color="#000000"
-                my="28px"
-                px="32px"
-                pt="36px"
-                pb="20px"
-                mx="80px"
-                h="calc(100vh - 128px)"
-                borderRadius="20px">
+                mt={{ base: "", md:"36px", lg: "28px" }}
+                mx={{ base: "", md:"53px", lg: "80px" }}
+                px={{ base: "", md:"27px", lg: "32px" }}          
+                minH={{base:"calc(100vh - 72px)", md:"calc(100vh - 144px)", lg:"calc(100vh - 128px)"}}
+                borderRadius={{ base: "", md: "20px" }}>
                 <Flex justify="space-between" align="center">
                     <Box>
                         <Text
-                            fontSize="36px"
+                            fontSize={{ base: "", md: "28px", lg: "36px" }}
                             lineHeight={1.4}
                             fontWeight={700}
+                            mt={{ base: "", md:"54px", lg: "36px" }}
                         >
                             {`Halo, ${profile.name}`}
                         </Text>
@@ -99,10 +101,10 @@ const Homepage = () => {
                                     fontSize="16px"
                                     lineHeight={1.5}
                                     color="#000000">Nama</Th>
-                                <Th fontWeight={700}
+                                {isDesktop && <Th fontWeight={700}
                                     fontSize="16px"
                                     lineHeight={1.5}
-                                    color="#000000">Jabatan</Th>
+                                    color="#000000">Jabatan</Th>}
                                 <Th fontWeight={700}
                                     fontSize="16px"
                                     lineHeight={1.5}
@@ -114,20 +116,20 @@ const Homepage = () => {
                             {profile.otherOfficers.map((el, index) => {
                                 return (
                                     <Tr key={index}>
-                                        <Td fontWeight={500}
+                                        <Td fontWeight={{ base: 400, md: 400, lg: 500 }}
                                             fontSize="16px"
                                             lineHeight={1.5}
                                             color="#000000">{el.name}</Td>
-                                        <Td fontWeight={500}
+                                        {isDesktop && <Td fontWeight={{ base: 400, md: 400, lg: 500 }}
                                             fontSize="16px"
                                             lineHeight={1.5}
-                                            color="#000000">{el.role}</Td>
-                                        <Td fontWeight={500}
+                                            color="#000000">{el.role}</Td>}
+                                        <Td fontWeight={{ base: 400, md: 400, lg: 500 }}
                                             fontSize="16px"
                                             lineHeight={1.5}
                                             color="#000000">{el.division}</Td>
                                         <Td isNumeric>
-                                            <Link href={{pathname: `/assesment/[slug]`, query:{slug: el.name, role: el.role, division: el.division}}}>
+                                            <Link href={{ pathname: `/assesment/[slug]`, query: { slug: el.name, role: el.role, division: el.division } }}>
                                                 <Button
                                                     bgColor={el.isAssessed ? "#8D9B9E" : "#50AEC7"}
                                                     color={el.isAssessed ? "#C6CBCC" : "#FFFFFF"}
