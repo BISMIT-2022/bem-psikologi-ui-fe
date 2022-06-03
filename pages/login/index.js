@@ -44,19 +44,18 @@ const LoginPage = () => {
     }
 
     return (
-        <Layout hasNavbar>
+        <Layout hasNavbar pb={{ base: "", md:"36px", lg: "28px" }}>
             <Flex
+                position="relative"
                 flexDirection="column"
                 align="center"
                 justify="center"
                 bgColor="#FFFFFF"
                 color="#000000"
-                my={{ base: "", lg: "28px" }}
-                pt="36px"
-                pb="20px"
-                mx={{ base: "", lg: "80px" }}
-                h={{base:"calc(100vh - 72px)", lg:"calc(100vh - 128px)"}}
-                borderRadius={{ base: "", lg: "20px" }}>
+                mt={{ base: "", md:"36px", lg: "28px" }}
+                mx={{ base: "", md:"53px", lg: "80px" }}
+                minH={{base:"calc(100vh - 72px)", md:"calc(100vh - 144px)", lg:"calc(100vh - 128px)"}}
+                borderRadius={{ base: "", md: "20px" }}>
                 <Flex
                     w="fit-content"
                     justify="center"
@@ -67,6 +66,7 @@ const LoginPage = () => {
                         lineHeight={1.4}
                         fontWeight={700}
                         fontFamily="HKGrotesk"
+                        mt={{ base: "84px", md:"88px", lg: "36px" }}
                     >
                         Selamat Datang!
                     </Text>
@@ -93,8 +93,8 @@ const LoginPage = () => {
                     }
                     <Text
                         mt="8px"
-                        fontSize={{ base: "16px", lg: "20px" }}
-                        lineHeight={{ base: 1.5, lg: 1.2 }}
+                        fontSize={{ base: "16px", md: "20px" }}
+                        lineHeight={{ base: 1.5, md: 1.2 }}
                         fontWeight={400}
                         fontFamily="HKGrotesk"
                         mb="40px"
@@ -109,7 +109,7 @@ const LoginPage = () => {
                     <Text
                         alignSelf="flex-start"
                         mt="40px"
-                        fontSize="16px"
+                        fontSize={{ base: "16px", md:"18px", lg: "16px" }}
                         lineHeight={1.5}
                         fontWeight={700}
                         mx={{base: "16px", lg:""}}
@@ -147,10 +147,10 @@ const LoginPage = () => {
                                         color={"#FFFFFF"}
                                         p="0px 24px"
                                         borderRadius="6px"
-                                        mt={{base:"30px", lg:"15px"}}
+                                        my={{base:"30px", lg:"15px"}}
                                         h="48px"
                                         type="submit"
-                                        fontSize="16px"
+                                        fontSize={{ base: "16px", md:"18px", lg: "16px" }}
                                         lineHeight={1.5}
                                         fontWeight="700"
                                         onClick={(e) => { loginHandler(e) }}
@@ -163,17 +163,14 @@ const LoginPage = () => {
                     </Box>
                 </Flex>
 
-                <Divider mt={{base:"", lg:"53px"}} position={{base: "absolute", lg:""}} 
-                    bottom={{base: "104px", lg:""}} />
+                <Divider mt={{base:"74px", md:"100px", lg:"36px"}} />
                 <Text
                     fontWeight={400}
-                    fontSize={{base: "14px", lg:"20px"}}
-                    lineHeight={{base: 1.7, lg:1.2}}
-                    mt={{base: "", lg:"20px"}}
+                    fontSize={{base: "14px", md:"18px", lg:"20px"}}
+                    lineHeight={{base: 1.7, md:1.5, lg:1.2}}
                     mx={{base: "16px", lg:""}}
                     textAlign="center"
-                    position={{base: "absolute", lg:""}}
-                    bottom={{base: "33px", lg:""}}
+                    my={{base:"24px", lg:"20px"}}
                 >
                     Bidang Pengembangan Organisasi BEM Fakultas Psikologi UI
                 </Text>
