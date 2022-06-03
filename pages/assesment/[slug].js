@@ -26,9 +26,7 @@ import ErrorIcon from '@atlaskit/icon/glyph/error'
 import { useForm } from "react-hook-form";
 
 const AssesmentPage = () => {
-
     const router = useRouter()
-
     const {
         isOpen: isOpenBackModal,
         onOpen: onOpenBackModal,
@@ -128,52 +126,70 @@ const AssesmentPage = () => {
                                             <Stack direction="row" spacing="40px">
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>1</Text>
-                                                    <Radio {...register(`${el.question}`)} name="1" className="radio" mt="3px" size="lg" value='1' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='1' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}>
                                                     </Radio>
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>2</Text>
-                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='2' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}></Radio>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='2' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}></Radio>
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>3</Text>
-                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='3' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}></Radio>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='3' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}></Radio>
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>4</Text>
-                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='4' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}></Radio>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='4' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}></Radio>
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>5</Text>
-                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='5' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}></Radio>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='5' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}></Radio>
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>6</Text>
-                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='6' _checked={{
-                                                        bg: "#000000",
-                                                        padding: "5px",
-                                                        border: "1.5px solid #000000"
-                                                    }}></Radio>
+                                                    <Radio {...register(`${el.question}`, { required: true })}
+                                                        name={`${el.question}`}
+                                                        isInvalid={errors[el.question]?.message === ''}
+                                                        mt="3px" size="lg" value='6' _checked={{
+                                                            bg: "#000000",
+                                                            padding: "5px",
+                                                            border: "1.5px solid #000000"
+                                                        }}></Radio>
                                                 </Flex>
                                             </Stack>
                                         </RadioGroup>
@@ -186,7 +202,12 @@ const AssesmentPage = () => {
                                         </Text>
                                     </Flex> :
                                     <Box w="60%">
-                                        <Textarea mt="24px" ml="32px" {...register(`${el.question}`)} placeholder="Jawab di sini" />
+                                        <Textarea
+                                            isInvalid={errors[el.question]?.message === ''}
+                                            mt="24px" ml="32px"
+                                            {...register(`${el.question}`, { required: true })}
+                                            placeholder="Jawab di sini"
+                                        />
                                     </Box>
                                 }
                             </Box>
@@ -202,7 +223,8 @@ const AssesmentPage = () => {
                 py="24px"
                 pl="33px"
                 mx="80px"
-                borderRadius="20px">
+                borderRadius="20px"
+                alignItems="center">
                 <Button
                     bgColor={"#50AEC7"}
                     _hover={{ backgroundColor: "blue.600" }}
@@ -221,6 +243,19 @@ const AssesmentPage = () => {
                 >
                     Kumpulkan Penilaian
                 </Button>
+                {Object.keys(errors).length !== 0 &&
+                    <Flex
+                        color="red.400"
+                        align="center"
+                        fontSize="12px"
+                        fontWeight="500"
+                        lineHeight={1.5}
+                        mt="4px">
+                        <ErrorIcon />
+                        Anda harus mengisi semua pertanyaan
+                    </Flex>
+                }
+
                 <Divider mt="24px" />
                 <Text
                     fontWeight={400}
@@ -292,6 +327,7 @@ const AssesmentPage = () => {
                             _hover={{ backgroundColor: "blue.600" }}
                             type="submit"
                             form="assesmentForm"
+                            onClick={onCloseSubmit}
                         >
                             Kumpulkan
                         </Button>
