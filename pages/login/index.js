@@ -132,7 +132,6 @@ const LoginPage = () => {
                                         <FormErrorMessage
                                             alignSelf="start"
                                         >
-
                                             <ErrorIcon />
                                             NPM yang Anda isi tidak ditemukan
                                         </FormErrorMessage>}

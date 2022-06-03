@@ -23,15 +23,29 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import { assesmentQuestions } from "../../data/data";
 import ErrorIcon from '@atlaskit/icon/glyph/error'
+import { useForm } from "react-hook-form";
 
 const AssesmentPage = () => {
-    const answersMap = new Map()
+
     const router = useRouter()
-    const { 
-        isOpen: isOpenBackModal, 
+
+    const {
+        isOpen: isOpenBackModal,
         onOpen: onOpenBackModal,
         onClose: onCloseBackModal } = useDisclosure()
+
+    const {
+        isOpen: isOpenSubmit,
+        onOpen: onOpenSubmit,
+        onClose: onCloseSubmit } = useDisclosure()
+
     const { query: queryParams } = useRouter();
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const onSubmit = data => {
+        console.log(data)
+        router.push("/home")
+    }
     return (
         <Layout hasNavbar pb="22px">
             <Flex
@@ -84,7 +98,7 @@ const AssesmentPage = () => {
                     Kembali
                 </Button>
             </Flex>
-            <form >
+            <form onSubmit={handleSubmit(onSubmit)} id="assesmentForm">
                 <FormControl key="assesmentForm" isInvalid={false}>
                     {assesmentQuestions.map((el, index) => {
                         return (
@@ -110,11 +124,11 @@ const AssesmentPage = () => {
                                         >
                                             Sangat Tidak Setuju
                                         </Text>
-                                        <RadioGroup name={el.id}>
+                                        <RadioGroup>
                                             <Stack direction="row" spacing="40px">
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>1</Text>
-                                                    <Radio className="radio" mt="3px" size="lg" value='1' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name="1" className="radio" mt="3px" size="lg" value='1' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -123,7 +137,7 @@ const AssesmentPage = () => {
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>2</Text>
-                                                    <Radio mt="3px" size="lg" value='2' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='2' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -131,7 +145,7 @@ const AssesmentPage = () => {
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>3</Text>
-                                                    <Radio mt="3px" size="lg" value='3' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='3' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -139,7 +153,7 @@ const AssesmentPage = () => {
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>4</Text>
-                                                    <Radio mt="3px" size="lg" value='4' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='4' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -147,7 +161,7 @@ const AssesmentPage = () => {
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>5</Text>
-                                                    <Radio mt="3px" size="lg" value='5' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='5' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -155,7 +169,7 @@ const AssesmentPage = () => {
                                                 </Flex>
                                                 <Flex direction="column" justify="center" align="center">
                                                     <Text fontSize="14px" lineHeight={1.5} fontWeight={500}>6</Text>
-                                                    <Radio mt="3px" size="lg" value='6' _checked={{
+                                                    <Radio {...register(`${el.question}`)} name={`${el.question}`} mt="3px" size="lg" value='6' _checked={{
                                                         bg: "#000000",
                                                         padding: "5px",
                                                         border: "1.5px solid #000000"
@@ -172,14 +186,13 @@ const AssesmentPage = () => {
                                         </Text>
                                     </Flex> :
                                     <Box w="60%">
-                                        <Textarea mt="24px" ml="32px" placeholder="Jawab di sini" />
+                                        <Textarea mt="24px" ml="32px" {...register(`${el.question}`)} placeholder="Jawab di sini" />
                                     </Box>
                                 }
                             </Box>
                         )
                     })}
                 </FormControl>
-
             </form>
             <Flex
                 direction="column"
@@ -204,6 +217,7 @@ const AssesmentPage = () => {
                     fontWeight="700"
                     w="fit-content"
                     m="0 auto"
+                    onClick={onOpenSubmit}
                 >
                     Kumpulkan Penilaian
                 </Button>
@@ -237,7 +251,7 @@ const AssesmentPage = () => {
                             lineHeight={1.5}
                             fontWeight={700}
                             _hover={{ backgroundColor: "blue.600" }}
-                            onClick={() => router.push("//home")}
+                            onClick={() => router.push("/home")}
                         >
                             Keluar
                         </Button>
@@ -253,6 +267,46 @@ const AssesmentPage = () => {
                             _hover={{ backgroundColor: "gray.300" }}
                         >
                             Lanjutkan Penilaian
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+            <Modal isOpen={isOpenSubmit} onClose={onCloseSubmit}>
+                <ModalOverlay />
+                <ModalContent position="absolute" top="30%">
+                    <ModalHeader>Kumpulkan Penilaian</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        Anda yakin ingin kumpulkan penilaian sekarang?
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            mr="12px"
+                            bgColor={"#50AEC7"}
+                            color={"#FFFFFF"}
+                            p="0px 16px"
+                            borderRadius="6px"
+                            fontSize="16px"
+                            lineHeight={1.5}
+                            fontWeight={700}
+                            _hover={{ backgroundColor: "blue.600" }}
+                            type="submit"
+                            form="assesmentForm"
+                        >
+                            Kumpulkan
+                        </Button>
+                        <Button
+                            onClick={onCloseSubmit}
+                            bgColor={"#EDF2F7"}
+                            color={"#000000"}
+                            p="0px 16px"
+                            borderRadius="6px"
+                            fontSize="16px"
+                            lineHeight={1.5}
+                            fontWeight={700}
+                            _hover={{ backgroundColor: "gray.300" }}
+                        >
+                            Kembali
                         </Button>
                     </ModalFooter>
                 </ModalContent>

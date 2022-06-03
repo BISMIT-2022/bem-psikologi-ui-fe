@@ -59,12 +59,12 @@ const assesmentQuestions = [
     {
         id: 1,
         type: "radio",
-        question: "Apakah xxxx?"
+        question: "Apakah x?"
     },
     {
         id: 2,
         type: "radio",
-        question: "Apakah xxxx?"
+        question: "Apakah xx?"
     },
     {
         id: 3,
