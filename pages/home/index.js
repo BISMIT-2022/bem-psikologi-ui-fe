@@ -11,7 +11,6 @@ import {
     Tr,
     Th,
     Td,
-    TableContainer,
     useDisclosure,
     Modal,
     ModalOverlay,
@@ -40,16 +39,16 @@ const Homepage = () => {
                 color="#000000"
                 mt={{ base: "", md:"36px", lg: "28px" }}
                 mx={{ base: "", md:"53px", lg: "80px" }}
-                px={{ base: "", md:"27px", lg: "32px" }}          
+                px={{ base: "16px", md:"27px", lg: "32px" }}          
                 minH={{base:"calc(100vh - 72px)", md:"calc(100vh - 144px)", lg:"calc(100vh - 128px)"}}
                 borderRadius={{ base: "", md: "20px" }}>
                 <Flex justify="space-between" align="center">
                     <Box>
                         <Text
-                            fontSize={{ base: "", md: "28px", lg: "36px" }}
+                            fontSize={{ base: "20px", md: "28px", lg: "36px" }}
                             lineHeight={1.4}
                             fontWeight={700}
-                            mt={{ base: "", md:"54px", lg: "36px" }}
+                            mt={{ base: "26px", md:"54px", lg: "36px" }}
                         >
                             {`Halo, ${profile.name}`}
                         </Text>
@@ -61,8 +60,8 @@ const Homepage = () => {
                             mt="12px"
                         >
                             <Text
-                                fontSize="20px"
-                                lineHeight={1.2}
+                                fontSize={{base:"14px", md:"20px"}}
+                                lineHeight="24px"
                                 fontWeight={400}
                             >
                                 {`${profile.division}`}
@@ -127,7 +126,7 @@ const Homepage = () => {
                                         <Td fontWeight={{ base: 400, md: 400, lg: 500 }}
                                             fontSize="16px"
                                             lineHeight={1.5}
-                                            color="#000000">{el.division}</Td>
+                                            color="#000000">{isMobile ? el.divisionAcronym : el.division}</Td>
                                         <Td isNumeric>
                                             <Link href={{ pathname: `/assesment/[slug]`, query: { slug: el.name, role: el.role, division: el.division } }}>
                                                 <Button
@@ -158,8 +157,8 @@ const Homepage = () => {
                 <Divider mt="53px" />
                 <Text
                     fontWeight={400}
-                    fontSize="20px"
-                    lineHeight={1.2}
+                    fontSize={{base:"14px", md:"20px"}}
+                    lineHeight="24px"
                     my="20px"
                     alignSelf="center"
                 >
@@ -168,7 +167,7 @@ const Homepage = () => {
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent position="absolute" top="30%">
+                <ModalContent position="absolute" top={{md:"40%",lg:"30%"}}>
                     <ModalHeader>Log Out</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>

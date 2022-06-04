@@ -7,13 +7,14 @@ const arrayOfNpm = [
 
 const profile = {
     name: "Mayfa Shadrina Siddi",
-    division: "Biro Penelitian dan Pengembangan",
+    division: "Staf Biro Penelitian dan Pengembangan",
     otherOfficers: [
         {
             id: 1,
             name: "Winnie The Pooh",
             role: "Ketua",
             division: "Pengembangan Sumber Daya Manusia",
+            divisionAcronym: "PSDM",
             isAssessed: false
         },
         {
@@ -21,6 +22,7 @@ const profile = {
             name: "Mickey Mouse",
             role: "Wakil Ketua",
             division: "Pengembangan Sumber Daya Manusia",
+            divisionAcronym: "PSDM",
             isAssessed: false
         },
         {
@@ -28,6 +30,7 @@ const profile = {
             name: "Princess Anna",
             role: "Ketua",
             division: "Pengembangan Sumber Daya Manusia",
+            divisionAcronym: "PSDM",
             isAssessed: true
         },
         {
@@ -35,6 +38,7 @@ const profile = {
             name: "Rapunzel",
             role: "Ketua",
             division: "Pengembangan Sumber Daya Manusia",
+            divisionAcronym: "PSDM",
             isAssessed: true
         },
         {
@@ -42,6 +46,7 @@ const profile = {
             name: "Captain Jack Sparrow",
             role: "Ketua",
             division: "Penelitian dan Pengembangan",
+            divisionAcronym: "Litbang",
             isAssessed: true
         },
         {
@@ -49,6 +54,7 @@ const profile = {
             name: "M Abdurahman Basyah",
             role: "Hamba Allah",
             division: "Pengembangan Sumber Daya Manusia",
+            divisionAcronym: "PSDM",
             isAssessed: true
         }
     ]
